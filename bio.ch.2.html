@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🧬 Human Reproduction — Exam Notes</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0f1a;
+    --card: #141627;
+    --card2: #1a1d30;
+    --border: #2a2d45;
+    --accent1: #ff6b9d;
+    --accent2: #a78bfa;
+    --accent3: #34d399;
+    --accent4: #fbbf24;
+    --accent5: #60a5fa;
+    --accent6: #f87171;
+    --text: #e8eaf6;
+    --muted: #8b8fa8;
+    --highlight: rgba(167,139,250,0.15);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+  /* HEADER */
+  .hero {
+    background: linear-gradient(135deg, #1a0a2e 0%, #0d1a3a 50%, #0d1f0d 100%);
+    padding: 48px 24px 36px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(167,139,250,0.12) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 30%, rgba(255,107,157,0.10) 0%, transparent 55%);
+  }
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.6rem, 5vw, 2.8rem);
+    font-weight: 800;
+    background: linear-gradient(135deg, #ff6b9d, #a78bfa, #60a5fa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+    margin-bottom: 8px;
+  }
+  .hero p { color: var(--muted); font-size: 0.9rem; position: relative; }
+  .badge-row {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    justify-content: center; margin-top: 16px; position: relative;
+  }
+  .badge {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 0.75rem;
+    color: var(--muted);
+    letter-spacing: 0.5px;
+  }
+
+  /* MAIN NAV TABS */
+  .main-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    padding: 16px 20px 0;
+    border-bottom: 1px solid var(--border);
+    background: var(--card);
+    position: sticky; top: 0; z-index: 100;
+  }
+  .main-tab {
+    padding: 10px 18px;
+    border-radius: 8px 8px 0 0;
+    border: none; cursor: pointer;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    background: transparent;
+    color: var(--muted);
+    transition: all 0.2s;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+  }
+  .main-tab:hover { color: var(--text); background: rgba(255,255,255,0.04); }
+  .main-tab.active { color: var(--text); border-bottom-color: var(--accent2); background: rgba(167,139,250,0.08); }
+
+  /* SECTION PAGES */
+  .page { display: none; padding: 24px 20px 60px; max-width: 960px; margin: 0 auto; }
+  .page.active { display: block; animation: fadeIn 0.3s ease; }
+  @keyframes fadeIn { from { opacity:0; transform: translateY(8px); } to { opacity:1; transform: translateY(0); } }
+
+  /* SECTION HEADING */
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    display: flex; align-items: center; gap: 10px;
+  }
+
+  /* ACCORDION */
+  .accordion { margin-bottom: 10px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
+  .acc-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 18px;
+    cursor: pointer;
+    background: var(--card2);
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+    user-select: none;
+  }
+  .acc-header:hover { background: rgba(255,255,255,0.05); }
+  .acc-header .acc-title { display: flex; align-items: center; gap: 10px; }
+  .acc-arrow { transition: transform 0.3s; font-style: normal; color: var(--muted); }
+  .accordion.open .acc-arrow { transform: rotate(180deg); }
+  .acc-body {
+    display: none;
+    padding: 16px 18px;
+    background: var(--card);
+    border-top: 1px solid var(--border);
+  }
+  .accordion.open .acc-body { display: block; animation: fadeIn 0.25s ease; }
+
+  /* CHIPS */
+  .chip-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
+  .chip {
+    padding: 5px 13px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border: 1px solid;
+    cursor: default;
+  }
+  .chip-pink   { background: rgba(255,107,157,0.12); border-color: rgba(255,107,157,0.35); color: #ff9dbf; }
+  .chip-purple { background: rgba(167,139,250,0.12); border-color: rgba(167,139,250,0.35); color: #c4b5fd; }
+  .chip-green  { background: rgba(52,211,153,0.10); border-color: rgba(52,211,153,0.3); color: #6ee7b7; }
+  .chip-yellow { background: rgba(251,191,36,0.10); border-color: rgba(251,191,36,0.3); color: #fde68a; }
+  .chip-blue   { background: rgba(96,165,250,0.10); border-color: rgba(96,165,250,0.3); color: #93c5fd; }
+  .chip-red    { background: rgba(248,113,113,0.10); border-color: rgba(248,113,113,0.3); color: #fca5a5; }
+
+  /* CARDS GRID */
+  .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin: 14px 0; }
+  .card {
+    background: var(--card2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+  }
+  .card-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+    display: flex; align-items: center; gap: 6px;
+  }
+
+  /* ROUTE BOX */
+  .route-box {
+    background: var(--card2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin: 12px 0;
+    font-size: 0.85rem;
+    line-height: 2;
+  }
+  .arrow { color: var(--accent3); font-weight: bold; margin: 0 6px; }
+
+  /* HIGHLIGHT BOX */
+  .hbox {
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin: 12px 0;
+    font-size: 0.85rem;
+  }
+  .hbox-yellow { background: rgba(251,191,36,0.08); border-left: 3px solid var(--accent4); }
+  .hbox-pink   { background: rgba(255,107,157,0.08); border-left: 3px solid var(--accent1); }
+  .hbox-green  { background: rgba(52,211,153,0.08); border-left: 3px solid var(--accent3); }
+  .hbox-purple { background: rgba(167,139,250,0.08); border-left: 3px solid var(--accent2); }
+  .hbox-blue   { background: rgba(96,165,250,0.08); border-left: 3px solid var(--accent5); }
+  .hbox-red    { background: rgba(248,113,113,0.08); border-left: 3px solid var(--accent6); }
+
+  /* TABLE */
+  table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.82rem; }
+  th {
+    background: rgba(167,139,250,0.12);
+    color: #c4b5fd;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+  tr:hover td { background: rgba(255,255,255,0.02); }
+
+  /* POINTS */
+  ul.pts { list-style: none; padding: 0; }
+  ul.pts li { padding: 4px 0 4px 20px; position: relative; font-size: 0.86rem; }
+  ul.pts li::before { content: '›'; position: absolute; left: 4px; color: var(--accent2); font-weight: bold; }
+
+  /* STAR POINTS */
+  ul.stars { list-style: none; padding: 0; }
+  ul.stars li { padding: 5px 0 5px 24px; position: relative; font-size: 0.86rem; }
+  ul.stars li::before { content: '⭐'; position: absolute; left: 0; font-size: 0.7rem; top: 7px; }
+
+  /* PHASE TIMELINE */
+  .timeline { margin: 14px 0; }
+  .tl-item {
+    display: flex; gap: 14px; margin-bottom: 10px;
+  }
+  .tl-dot {
+    width: 36px; height: 36px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.7rem; font-weight: 700; flex-shrink: 0;
+    font-family: 'Syne', sans-serif;
+  }
+  .tl-content { flex: 1; }
+  .tl-label { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.85rem; margin-bottom: 3px; }
+
+  /* EXAM QS */
+  .qbox {
+    background: rgba(255,107,157,0.07);
+    border: 1px solid rgba(255,107,157,0.25);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin: 6px 0;
+    font-size: 0.84rem;
+  }
+  .qbox span { color: var(--accent1); font-weight: 700; margin-right: 6px; }
+
+  /* SUMMARY GRID */
+  .sum-item {
+    background: var(--card2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 0.82rem;
+    display: flex; gap: 10px; align-items: flex-start;
+  }
+  .sum-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 2px; }
+
+  small { color: var(--muted); font-size: 0.78rem; }
+  strong { color: var(--text); }
+  .label { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 6px; }
+  hr { border: none; border-top: 1px solid var(--border); margin: 18px 0; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>🧬 Human Reproduction</h1>
+  <p>NCERT Biology · Class 12 · Chapter 3 · Exam-Oriented Interactive Notes</p>
+  <div class="badge-row">
+    <span class="badge">📚 NCERT</span>
+    <span class="badge">🎯 Exam Ready</span>
+    <span class="badge">🔬 Class 12</span>
+    <span class="badge">⭐ High Yield</span>
+  </div>
+</div>
+
+<!-- MAIN TABS -->
+<nav class="main-nav">
+  <button class="main-tab active" onclick="showPage('male')">♂️ Male System</button>
+  <button class="main-tab" onclick="showPage('female')">♀️ Female System</button>
+  <button class="main-tab" onclick="showPage('gameto')">🧫 Gametogenesis</button>
+  <button class="main-tab" onclick="showPage('menstrual')">🩸 Menstrual Cycle</button>
+  <button class="main-tab" onclick="showPage('fertilization')">🔬 Fertilization</button>
+  <button class="main-tab" onclick="showPage('pregnancy')">🤰 Pregnancy</button>
+  <button class="main-tab" onclick="showPage('exam')">🎯 Exam Prep</button>
+</nav>
+
+<!-- ═══════════════════ PAGE: MALE ═══════════════════ -->
+<div class="page active" id="page-male">
+  <div class="section-title">♂️ Male Reproductive System</div>
+
+  <div class="accordion open">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-title">🏠 Overview & Location</div>
+      <i class="acc-arrow">▼</i>
+    </div>
+    <div class="acc-body">
+      <div class="chip-row">
+        <span class="chip chip-pink">Testes</span>
+        <span class="chip chip-purple">Ducts</span>
+        <span class="chip chip-green">Glands</span>
+        <span class="chip chip-blue">Penis</span>
+      </div>
+      <ul class="pts">
+        <li>Located mostly <strong>outside abdomen</strong> in the scrotum</li>
+        <li>Scrotum maintains temp <strong>2–2.5°C lower</strong> than body → essential for spermatogenesis</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-title">🔵 Testes — Structure</div>
+      <i class="acc-arrow">▼</i>
+    </div>
+    <div class="acc-body">
+      <div class="grid2">
+        <div class="card">
+          <div class="card-title" style="color:#a78bfa">🧅 Outer Covering</div>
+          <ul class="pts">
+            <li>Enclosed by <strong>Tunica albuginea</strong></li>
+            <li>~<strong>250 testicular lobules</strong> inside</li>
+            <li>Each lobule: <strong>1–3 seminiferous tubules</strong></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title" style="color:#ff6b9d">🔬 Inside Tubules</div>
+          <ul class="pts">
+            <li><strong>Spermatogenic cells</strong> → produce sperms</li>
+            <li><strong>Sertoli cells</strong> → nutrition + inhibin</li>
+            <li><strong>Leydig (Interstitial) cells</strong> → testosterone</li>
+          </ul>
+        </div>
+      </div>
+      <div class="hbox hbox-yellow">⭐ <strong>Memory:</strong> Sertoli → Support (nutrition + inhibin) | Leydig → tEstosterone</div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-title">🛣️ Sperm Route (Duct System)</div>
+      <i class="acc-arrow">▼</i>
+    </div>
+    <div class="acc-body">
+      <div class="route-box">
+        <strong>Seminiferous Tubules</strong>
+        <span class="arrow">→</span><strong>Rete Testis</strong>
+        <span class="arrow">→</span><strong>Vasa Efferentia</strong>
+        <span class="arrow">→</span><strong>Epididymis</strong>
+        <span class="arrow">→</span><strong>Vas Deferens</strong>
+        <span class="arrow">→</span><strong>Ejaculatory Duct</strong>
+        <span class="arrow">→</span><strong>Urethra</strong>
+      </div>
+      <div class="grid2" style="margin-top:12px">
+        <div class="card">
+          <div class="card-title" style="color:#34d399">📌 Key Stops</div>
+          <ul class="pts">
+            <li><strong>Rete testis</strong> — network of tubules inside testis</li>
+            <li><strong>Vasa efferentia</strong> — transport sperm out of testis</li>
+            <li><strong>Epididymis</strong> — highly coiled; site of <strong>sperm maturation</strong></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title" style="color:#fbbf24">🔍 Epididymis Parts</div>
+          <div class="chip-row">
+            <span class="chip chip-blue">Caput (Head)</span>
+            <span class="chip chip-green">Corpus (Body)</span>
+            <span class="chip chip-yellow">Cauda (Storage)</span>
+          </div>
+          <ul class="pts" style="margin-top:6px">
+            <li><strong>Cauda</strong> = storage of mature sperm</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-title">💧 Accessory Glands</div>
+      <i class="acc-arrow">▼</i>
+    </div>
+    <div class="acc-body">
+      <div class="grid2">
+        <div class="card">
+          <div class="card-title" style="color:#ff6b9d">🫙 Seminal Vesicles</div>
+          <ul class="pts">
+            <li>Secrete <strong>fructose</strong> + prostaglandins</li>
+            <li>Contribute <strong>60–70%</strong> of semen volume</li>
+            <li>Fructose = energy for sperm</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title" style="color:#a78bfa">🫁 Prostate Gland</div>
+          <ul class="pts">
+            <li>Milky fluid + enzymes</li>
+            <li>Helps sperm <strong>motility & activation</strong></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title" style="color:#34d399">💧 Bulbourethral (Cowper's)</div>
+          <ul class="pts">
+            <li>Viscous <strong>mucus</strong></li>
+            <li>Lubricates urethra</li>
+            <li>Neutralizes acidic traces of urine</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title" style="color:#fbbf24">🧪 Seminal Plasma</div>
+          <ul class="pts">
+            <li>= Secretions of ALL 3 glands</li>
+            <li>Semen = <strong>Sperm + Seminal Plasma</strong></li>
+          </ul>
+        </div>
+      </div>
+      <div class="hbox hbox-pink" style="margin-top:10px">🎯 <strong>Exam Tip:</strong> Seminal vesicles = fructose | Prostate = enzymes | Cowper's = mucus</div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-title">🔵 Structure of Sperm</div>
+      <i class="acc-arrow">▼</i>
+    </div>
+    <div class="acc-body">
+      <div class="grid2">
+        <div class="card"><div class="card-title" style="color:#ff6b9d">Head</div>Nucleus + <strong>Acrosome</strong> (enzymes for egg penetration)</div>
+        <div class="card"><div class="card-title" style="color:#a78bfa">Neck</div>Contains <strong>Centrioles</strong></div>
+        <div class="card"><div class="card-title" style="color:#fbbf24">Middle Piece</div><strong>Mitochondria</strong> → ATP for movement</div>
+        <div class="card"><div class="card-title" style="color:#34d399">Tail</div>Flagellum for <strong>movement / motility</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ PAGE: FEMALE ═══════════════════ -->
+<div class="page" id="page-female">
+  <div class="section-title">♀️ Female Reproductive System</div>
+
+  <div class="accordion open">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-title">🥚 Ovaries</div>
+      <i class="acc-arrow">▼</i>
+    </div>
+    <div class="acc-body">
+      <div class="chip-row">
+        <span class="chip chip-pink">Paired organs</span>
+        <span class="chip chip-purple">Estrogen</span>
+        <span class="chip chip-green">Progesterone</span>
+      </div>
+      <div class="grid2">
+        <div class="card">
+          <div class="card-title" style="color:#ff6b9d">📍 Location</div>
+          <ul class="pts">
+            <li>Either side of uterus</li>
+            <li>Held by 3 ligaments: <strong>ovarian, suspensory, broad</strong></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title" style="color:#a78bfa">🔬 Structure</div>
+          <ul class="pts">
+            <li>Covered by <strong>germinal epithelium</strong></li>
+            <li><strong>Cortex</strong> — contains follicles</li>
+            <li><strong>Medulla</strong> — vascular zone</li>
+          </ul>
+        </div>
+      </div>
+      <hr>
+      <div class="label">Follicle Development</div>
+      <div class="route-box">
+        <strong>Primordial</strong> <span class="arrow">→</span>
+        <strong>Primary</strong> <span class="arrow">→</span>
+        <strong>Secondary</strong> <span class="arrow">→</span>
+        <strong>Tertiary</strong> <span class="arrow">→</span>
+        <strong style="color:#ff6b9d">Graafian Follicle</strong>
+      </div>
+      <div class="hbox hbox-purple">
+        <strong>Graafian Follicle contains:</strong> Oocyte · Corona radiata · Zona pellucida · Antrum (fluid) · Theca interna + externa
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-title">🌸 Fallopian Tubes (Oviducts)</div>
+      <i class="acc-arrow">▼</i>
+    </div>
+    <div class="acc-body">
+      <div class="grid2">
+        <div class="card">
+          <div class="card-title" style="color:#60a5fa">1. Infundibulum</div>
+          <ul class="pts">
+            <li>Funnel-shaped, outermost part</li>
+            <li>Has <strong>fimbriae</strong> → capture released ovum</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title" style="color:#ff6b9d">2. Ampulla ⭐</div>
+          <ul class="pts">
+            <li>Wider region</li>
+            <li><strong>SITE OF FERTILIZATION</strong></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title" style="color:#34d399">3. Isthmus</div>
+          <ul class="pts">
+            <li>Narrow region</li>
+            <li>Joins uterus</li>
+          </ul>
+        </div>
+      </div>
+      <div class="hbox hbox-pink">🎯 <strong>Must Know:</strong> Fertilization = Ampullary–Isthmic junction (or ampulla)</div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-title">🫶 Uterus</div>
+      <i class="acc-arrow">▼</i>
+    </div>
+    <div class="acc-body">
+      <ul class="pts">
+        <li>Inverted <strong>pear-shaped</strong> muscular organ</li>
+        <li>Opens into vagina via <strong>cervix</strong></li>
+      </ul>
+      <div class="grid2" style="margin-top:10px">
+        <div class="card">
+          <div class="card-title" style="color:#fbbf24">1. Perimetrium</div>
+          Outer serous covering
+        </div>
+        <div class="card">
+          <div class="card-title" style="color:#a78bfa">2. Myometrium</div>
+          Middle <strong>muscular layer</strong> → contracts during childbirth
+        </div>
+        <div class="card">
+          <div class="card-title" style="color:#ff6b9d">3. Endometrium ⭐</div>
+          Inner glandular layer → undergoes cyclical changes (menstrual cycle) → <strong>site of implantation</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-title">🌺 External Genitalia & Other Parts</div>
+      <i class="acc-arrow">▼</i>
+    </div>
+    <div class="acc-body">
+      <div class="chip-row">
+        <span class="chip chip-pink">Mons pubis</span>
+        <span class="chip chip-purple">Labia majora</span>
+        <span class="chip chip-green">Labia minora</span>
+        <span class="chip chip-blue">Clitoris (erectile)</span>
+        <span class="chip chip-yellow">Hymen</span>
+        <span class="chip chip-red">Vestibule</span>
+      </div>
+      <hr>
+      <div class="label">Mammary Glands</div>
+      <ul class="pts">
+        <li>Lobes → Lobules → <strong>Alveoli</strong> (milk-secreting)</li>
+        <li>Milk → Lactiferous ducts → Nipple</li>
+      </ul>
+      <div class="hbox hbox-green">Vagina = acidic environment to prevent infections</div>
+      <div class="hbox hbox-yellow">Cervix + Vagina = <strong>birth canal</strong></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ PAGE: GAMETOGENESIS ═══════════════════ -->
+<div class="page" id="page-gameto">
+  <div class="section-title">🧫 Gametogenesis</div>
+  <div class="hbox hbox-purple">
+    <strong>Definition:</strong> Formation of haploid gametes (sperm + ovum) from diploid germ cells. Includes Spermatogenesis, Spermiogenesis & Oogenesis.
+  </div>
+
+  <div class="accordion open">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-title">🔵 Spermatogenesis — Hormonal Control</div>
+      <i class="acc-arrow">▼</i>
+    </div>
+    <div class="acc-body">
+      <div class="route-box">
+        <strong>GnRH</strong> (Hypothalamus)
+        <span class="arrow">→</span> <strong>Anterior Pituitary</strong>
+        <span class="arrow">→</span>
+        <strong style="color:#fbbf24">LH</strong> → Leydig cells → <strong>Testosterone</strong>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span class="arrow">→</span>
+        <strong style="color:#60a5fa">FSH</strong> → Sertoli cells → spermatogenesis + <strong>inhibin</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-title">📊 Stages of Spermatogenesis</div>
+      <i class="acc-arrow">▼</i>
+    </div>
+    <div class="acc-body">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot" style="background:rgba(255,107,157,0.2);color:#ff6b9d;border:1px solid #ff6b9d">1</div>
+          <div class="tl-content">
+            <div class="tl-label">Multiplication Phase (Mitosis)</div>
+            <ul class="pts"><li>Spermatogonia (2n) divide repeatedly</li><li>Some remain as reserve stem cells, some → Primary Spermatocytes</li></ul>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="background:rgba(167,139,250,0.2);color:#a78bfa;border:1px solid #a78bfa">2</div>
+          <div class="tl-content">
+            <div class="tl-label">Growth Phase</div>
+            <ul class="pts"><li>Primary spermatocyte (2n) grows in size</li><li><strong>Largest cell</strong> in the lineage</li></ul>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="background:rgba(52,211,153,0.2);color:#34d399;border:1px solid #34d399">3</div>
+          <div class="tl-content">
+            <div class="tl-label">Meiotic Divisions</div>
+            <ul class="pts">
+              <li><strong>Meiosis I:</strong> Primary spermatocyte (2n) → 2 Secondary spermatocytes (n)</li>
+              <li><strong>Meiosis II:</strong> Each → 2 Spermatids (n)</li>
+              <li>Result: <strong>1 primary spermatocyte → 4 spermatids</strong></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="hbox hbox-green">⭐ <strong>Spermiogenesis:</strong> Spermatids (non-motile) → Spermatozoa (motile) — includes tail, acrosome, nuclear condensation, mitochondrial spiral</div>
+      <div class="hbox hbox-blue">⭐ <strong>Spermiation:</strong> Release of mature sperm from Sertoli cells into lumen of seminiferous tubules</div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-title">🌸 Oogenesis</div>
+      <i class="acc-arrow">▼</i>
+    </div>
+    <div class="acc-body">
+      <div class="hbox hbox-yellow">Begins <strong>before birth</strong>, pauses, resumes at puberty</div>
+      <div class="timeline" style="margin-top:12px">
+        <div class="tl-item">
+          <div class="tl-dot" style="background:rgba(255,107,157,0.2);color:#ff6b9d;border:1px solid #ff6b9d">🤰</div>
+          <div class="tl-content">
+            <div class="tl-label">Before Birth</div>
+            <ul class="pts">
+              <li>Oogonia (2n) → Primary oocytes (2n) by mitosis</li>
+              <li>Primary oocytes start Meiosis I → <strong>STOP at Prophase I</strong></li>
+              <li>Surrounded by follicle cells → <strong>Primordial follicle</strong></li>
+              <li>At birth: ~1–2 million oocytes</li>
+            </ul>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="background:rgba(251,191,36,0.2);color:#fbbf24;border:1px solid #fbbf24">🌸</div>
+          <div class="tl-content">
+            <div class="tl-label">At Puberty</div>
+            <ul class="pts">
+              <li>~60,000–80,000 oocytes remain</li>
+              <li>Monthly: Primordial → Primary → Secondary → Tertiary → <strong>Graafian follicle</strong></li>
+            </ul>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="background:rgba(52,211,153,0.2);color:#34d399;border:1px solid #34d399">⚡</div>
+          <div class="tl-content">
+            <div class="tl-label">Before Ovulation (Meiosis I Completes)</div>
+            <ul class="pts">
+              <li>Primary oocyte (2n) → <strong>Secondary oocyte (n)</strong> + <strong>First polar body (n)</strong></li>
+              <li>Secondary oocyte starts Meiosis II → <strong>STOPS at Metaphase II</strong></li>
+            </ul>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="background:rgba(167,139,250,0.2);color:#a78bfa;border:1px solid #a78bfa">🎯</div>
+          <div class="tl-content">
+            <div class="tl-label">After Fertilization (Meiosis II Completes)</div>
+            <ul class="pts">
+              <li>Secondary oocyte → <strong>Ovum (n)</strong> + Second polar body</li>
+              <li>If no fertilization → Meiosis II never completes</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-title">📊 Comparison Table</div>
+      <i class="acc-arrow">▼</i>
+    </div>
+    <div class="acc-body">
+      <table>
+        <tr><th>Feature</th><th>Spermatogenesis</th><th>Oogenesis</th></tr>
+        <tr><td>Starts</td><td>Puberty</td><td>Before birth</td></tr>
+        <tr><td>Ends</td><td>Late age</td><td>Menopause</td></tr>
+        <tr><td>Gametes produced</td><td><strong>4 sperms</strong></td><td><strong>1 ovum</strong></td></tr>
+        <tr><td>Arrest stage 1</td><td>None</td><td>Prophase I (till puberty)</td></tr>
+        <tr><td>Arrest stage 2</td><td>None</td><td>Metaphase II (till fertilization)</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ PAGE: MENSTRUAL ═══════════════════ -->
+<div class="page" id="page-menstrual">
+  <div class="section-title">🩸 Menstrual Cycle</div>
+  <div class="hbox hbox-purple">
+    <strong>Definition:</strong> Cyclic, rhythmic changes in female reproductive system every ~28 days involving ovary, uterus, and hormones. Occurs from <strong>Menarche → Menopause</strong>.
+  </div>
+
+  <div class="accordion open">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-title">🩸 Phase 1 — Menstrual Phase (Day 1–5)</div>
+      <i class="acc-arrow">▼</i>
+    </div>
+    <div class="acc-body">
+      <ul class="pts">
+        <li>Corpus luteum degenerates → <strong>Progesterone drops</strong></li>
+        <li>Endometrium breaks down → discharged as menstrual flow</li>
+        <li>Blood loss: <strong>30–80 mL</strong></li>
+        <li>FSH starts rising again toward end of phase</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-title">🌱 Phase 2 — Follicular/Proliferative Phase (Day 6–14)</div>
+      <i class="acc-arrow">▼</i>
+    </div>
+    <div class="acc-body">
+      <ul class="pts">
+        <li><strong>FSH ↑</strong> → stimulates follicular growth</li>
+        <li>Growing follicles secrete <strong>estrogen</strong></li>
+        <li>Estrogen → proliferation (thickening) of endometrium + vascularization + gland development</li>
+        <li>Follicle: Primary → Secondary → Tertiary → <strong>Graafian follicle</strong></li>
+      </ul>
+      <div class="hbox hbox-pink">Peak estrogen → positive feedback → <strong>sudden LH surge</strong> → triggers ovulation</div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-title">🍒 Day 14 — Ovulation</div>
+      <i class="acc-arrow">▼</i>
+    </div>
+    <div class="acc-body">
+      <ul class="pts">
+        <li>Triggered by <strong>sharp LH surge</strong></li>
+        <li>Graafian follicle ruptures</li>
+        <li>Releases <strong>secondary oocyte</strong> (arrested at Metaphase II)</li>
+        <li>Picked up by <strong>fimbriae</strong> of fallopian tube</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-title">🌼 Phase 3 — Luteal/Secretory Phase (Day 15–28)</div>
+      <i class="acc-arrow">▼</i>
+    </div>
+    <div class="acc-body">
+      <ul class="pts">
+        <li>LH converts ruptured follicle → <strong>Corpus luteum</strong></li>
+        <li>Corpus luteum secretes <strong>progesterone (high) + some estrogen</strong></li>
+        <li>Progesterone → endometrium becomes thick, glandular, vascular → ready for implantation</li>
+      </ul>
+      <div class="grid2" style="margin-top:10px">
+        <div class="card">
+          <div class="card-title" style="color:#f87171">❌ No Fertilization</div>
+          <ul class="pts">
+            <li>Corpus luteum → <strong>Corpus albicans</strong></li>
+            <li>Progesterone falls</li>
+            <li>Endometrium degenerates → <strong>menstruation</strong></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title" style="color:#34d399">✅ Fertilization Occurs</div>
+          <ul class="pts">
+            <li>Corpus luteum maintained by <strong>hCG</strong> (from embryo)</li>
+            <li>Pregnancy begins</li>
+            <li>Menstruation stops</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-title">🧪 Hormonal Summary</div>
+      <i class="acc-arrow">▼</i>
+    </div>
+    <div class="acc-body">
+      <table>
+        <tr><th>Hormone</th><th>Source</th><th>Function</th></tr>
+        <tr><td><strong>FSH</strong></td><td>Anterior pituitary</td><td>Follicle growth</td></tr>
+        <tr><td><strong>Estrogen</strong></td><td>Follicles</td><td>Thickens endometrium</td></tr>
+        <tr><td><strong>LH</strong></td><td>Anterior pituitary</td><td>Ovulation (LH surge)</td></tr>
+        <tr><td><strong>Progesterone</strong></td><td>Corpus luteum</td><td>Maintains endometrium</td></tr>
+        <tr><td><strong>hCG</strong></td><td>Embryo (after conception)</td><td>Maintains corpus luteum</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ PAGE: FERTILIZATION ═══════════════════ -->
+<div class="page" id="page-fertilization">
+  <div class="section-title">🔬 Fertilization & Implantation</div>
+  <div class="hbox hbox-green">
+    <strong>Site:</strong> Ampullary–isthmic junction of fallopian tube | <strong>Definition:</strong> Fusion of sperm + ovum → zygote
+  </div>
+
+  <div class="accordion open">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-title">⚡ Pre-Fertilization Steps</div>
+      <i class="acc-arrow">▼</i>
+    </div>
+    <div class="acc-body">
+      <div class="grid2">
+        <div class="card">
+          <div class="card-title" style="color:#60a5fa">1. Capacitation</div>
+          <ul class="pts">
+            <li>Biochemical changes in sperm in female tract</li>
+            <li>Removes glycoprotein coat on sperm head</li>
+            <li>Makes sperm membrane <strong>fusible</strong></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title" style="color:#ff6b9d">2. Acrosomal Reaction</div>
+          <ul class="pts">
+            <li>Acrosome releases enzymes: <strong>Hyaluronidase + Acrosin</strong></li>
+            <li>Penetrates corona radiata + zona pellucida</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title" style="color:#a78bfa">3. Species-Specific Recognition</div>
+          <ul class="pts">
+            <li>Zona pellucida has <strong>ZP3 receptor</strong></li>
+            <li>Binds only to human sperm</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-title">🛡️ Blocks to Polyspermy</div>
+      <i class="acc-arrow">▼</i>
+    </div>
+    <div class="acc-body">
+      <div class="grid2">
+        <div class="card">
+          <div class="card-title" style="color:#fbbf24">Zona Reaction</div>
+          Zona pellucida <strong>hardens</strong> immediately after sperm entry
+        </div>
+        <div class="card">
+          <div class="card-title" style="color:#34d399">Cortical Reaction</div>
+          Cortical granules release enzymes → prevent entry of additional sperms
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-title">🧬 Zygote → Blastocyst</div>
+      <i class="acc-arrow">▼</i>
+    </div>
+    <div class="acc-body">
+      <div class="route-box">
+        <strong>Male pronucleus (n)</strong> + <strong>Female pronucleus (n)</strong>
+        <span class="arrow">→</span> <strong>Zygote (2n)</strong>
+        <span class="arrow">→</span> 2-cell <span class="arrow">→</span> 4-cell <span class="arrow">→</span> 8-cell
+        <span class="arrow">→</span> <strong>Morula</strong> (~16 cells, solid)
+        <span class="arrow">→</span> <strong>Blastocyst</strong>
+      </div>
+      <div class="hbox hbox-yellow">Morula reaches uterus <strong>3–4 days</strong> after fertilization</div>
+      <div class="grid2" style="margin-top:10px">
+        <div class="card"><div class="card-title" style="color:#ff6b9d">Trophoblast (outer)</div>→ forms <strong>placenta</strong></div>
+        <div class="card"><div class="card-title" style="color:#a78bfa">ICM (inner)</div>→ forms <strong>embryo</strong></div>
+        <div class="card"><div class="card-title" style="color:#34d399">Blastocoel</div>Fluid-filled cavity inside blastocyst</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-title">🌷 Implantation</div>
+      <i class="acc-arrow">▼</i>
+    </div>
+    <div class="acc-body">
+      <div class="hbox hbox-purple"><strong>Definition:</strong> Attachment of blastocyst to endometrium | Occurs ~<strong>6–7 days</strong> after fertilization</div>
+      <div class="timeline" style="margin-top:12px">
+        <div class="tl-item">
+          <div class="tl-dot" style="background:rgba(96,165,250,0.2);color:#60a5fa;border:1px solid #60a5fa">1</div>
+          <div class="tl-content"><div class="tl-label">Apposition</div>Blastocyst loosely contacts endometrium</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="background:rgba(255,107,157,0.2);color:#ff6b9d;border:1px solid #ff6b9d">2</div>
+          <div class="tl-content"><div class="tl-label">Adhesion</div>Trophoblast cells tightly bind to endometrium</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="background:rgba(52,211,153,0.2);color:#34d399;border:1px solid #34d399">3</div>
+          <div class="tl-content">
+            <div class="tl-label">Invasion</div>
+            <ul class="pts">
+              <li>Trophoblast → <strong>Cytotrophoblast (inner)</strong> + <strong>Syncytiotrophoblast (outer)</strong></li>
+              <li>Syncytiotrophoblast erodes uterine tissues → blastocyst embeds</li>
+              <li>Starts producing <strong>hCG</strong></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ PAGE: PREGNANCY ═══════════════════ -->
+<div class="page" id="page-pregnancy">
+  <div class="section-title">🤰 Pregnancy, Parturition & Lactation</div>
+  <div class="hbox hbox-blue">
+    <strong>Pregnancy:</strong> Implantation → Parturition, ~<strong>9 months / 40 weeks</strong>. Maintained by <strong>hCG → Corpus luteum → Progesterone</strong>
+  </div>
+
+  <div class="accordion open">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-title">🫙 Placenta — Structure & Functions</div>
+      <i class="acc-arrow">▼</i>
+    </div>
+    <div class="acc-body">
+      <ul class="pts">
+        <li>Temporary, disc-shaped foetal–maternal organ</li>
+        <li>Formed by: <strong>Chorionic villi (foetal) + Uterine tissue (maternal)</strong></li>
+      </ul>
+      <div class="grid2" style="margin-top:10px">
+        <div class="card"><div class="card-title" style="color:#60a5fa">Transport</div>Nutrients (glucose, amino acids), O₂ in, CO₂ + urea out</div>
+        <div class="card"><div class="card-title" style="color:#34d399">Barrier</div>Protects from many pathogens (NOT all)</div>
+        <div class="card"><div class="card-title" style="color:#ff6b9d">Endocrine Gland</div>Secretes multiple hormones (see below)</div>
+      </div>
+      <hr>
+      <div class="label">Placental Hormones</div>
+      <table>
+        <tr><th>Hormone</th><th>Function</th></tr>
+        <tr><td><strong>hCG</strong></td><td>Maintains corpus luteum early pregnancy; basis of pregnancy test</td></tr>
+        <tr><td><strong>hPL</strong> (human placental lactogen)</td><td>Breast development, maternal metabolism</td></tr>
+        <tr><td><strong>Relaxin</strong></td><td>Relaxes pelvic ligaments, dilates cervix</td></tr>
+        <tr><td><strong>Progesterone & Estrogen</strong></td><td>Maintain endometrium, suppress ovulation</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-title">🔬 Embryonic Development & Germ Layers</div>
+      <i class="acc-arrow">▼</i>
+    </div>
+    <div class="acc-body">
+      <div class="hbox hbox-purple"><strong>Gastrulation:</strong> ICM → 3 germ layers</div>
+      <div class="grid2" style="margin-top:10px">
+        <div class="card"><div class="card-title" style="color:#ff6b9d">Ectoderm</div>Skin, nervous system</div>
+        <div class="card"><div class="card-title" style="color:#a78bfa">Mesoderm</div>Muscles, bones, gonads, connective tissue</div>
+        <div class="card"><div class="card-title" style="color:#34d399">Endoderm</div>Gut lining, liver, pancreas, lungs</div>
+      </div>
+      <hr>
+      <div class="label">Extra-Embryonic Membranes</div>
+      <div class="chip-row">
+        <span class="chip chip-pink">Chorion → placenta</span>
+        <span class="chip chip-purple">Amnion → amniotic fluid</span>
+        <span class="chip chip-green">Yolk sac → early blood cells</span>
+        <span class="chip chip-yellow">Allantois → umbilical cord</span>
+      </div>
+      <div class="hbox hbox-yellow" style="margin-top:10px">
+        ⭐ <strong>Up to 8 weeks = Embryo | After 8 weeks = Foetus</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-title">📅 Foetal Development by Trimester</div>
+      <i class="acc-arrow">▼</i>
+    </div>
+    <div class="acc-body">
+      <table>
+        <tr><th>Trimester</th><th>Weeks</th><th>Key Events</th></tr>
+        <tr><td><strong>1st</strong></td><td>1–12</td><td>All organs formed; limbs & digits visible; major development complete</td></tr>
+        <tr><td><strong>2nd</strong></td><td>13–28</td><td>Rapid growth; <strong>quickening</strong> (first movements felt); hair, eyelashes, eyelids</td></tr>
+        <tr><td><strong>3rd</strong></td><td>29–40</td><td>Fat deposition; lungs mature; fully ready for birth</td></tr>
+      </table>
+      <div class="hbox hbox-blue">Heart forms by <strong>3rd week</strong>, beats by <strong>4th week</strong> | Limbs appear: <strong>4th week</strong></div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-title">👶 Parturition (Childbirth)</div>
+      <i class="acc-arrow">▼</i>
+    </div>
+    <div class="acc-body">
+      <div class="hbox hbox-pink">Trigger: <strong>Foetal ejection reflex</strong> → Hypothalamus → Oxytocin (posterior pituitary) → uterine contractions</div>
+      <div class="hbox hbox-yellow" style="margin-top:8px">🔄 <strong>Positive Feedback:</strong> Oxytocin → contractions → stretch cervix → more oxytocin → birth</div>
+      <hr>
+      <div class="label">3 Stages of Parturition</div>
+      <div class="grid2">
+        <div class="card"><div class="card-title" style="color:#60a5fa">1. Dilation</div>Cervix dilates</div>
+        <div class="card"><div class="card-title" style="color:#ff6b9d">2. Expulsion</div>Baby delivered</div>
+        <div class="card"><div class="card-title" style="color:#34d399">3. Afterbirth</div>Placenta expelled</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-title">🍼 Lactation</div>
+      <i class="acc-arrow">▼</i>
+    </div>
+    <div class="acc-body">
+      <div class="grid2">
+        <div class="card"><div class="card-title" style="color:#a78bfa">Prolactin</div>Anterior pituitary → <strong>milk production</strong></div>
+        <div class="card"><div class="card-title" style="color:#ff6b9d">Oxytocin</div>Posterior pituitary → <strong>milk ejection</strong> (let-down reflex)</div>
+      </div>
+      <div class="hbox hbox-green" style="margin-top:10px">
+        🌟 <strong>Colostrum</strong> = first yellowish milk | Rich in <strong>IgA antibodies</strong> | Highly nutritious | Passive immunity
+      </div>
+      <ul class="pts" style="margin-top:8px">
+        <li>Suckling → ↑ Prolactin (produce milk) + ↑ Oxytocin (release milk)</li>
+        <li>Benefits: passive immunity, ideal nutrition, emotional bonding</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ PAGE: EXAM ═══════════════════ -->
+<div class="page" id="page-exam">
+  <div class="section-title">🎯 Exam Prep — High Yield Facts & Questions</div>
+
+  <div class="accordion open">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-title">⚡ Must-Remember Facts (Flash Review)</div>
+      <i class="acc-arrow">▼</i>
+    </div>
+    <div class="acc-body">
+      <div class="grid2">
+        <div class="sum-item"><span class="sum-icon">🌡️</span><div>Scrotum temp: <strong>2–2.5°C lower</strong> than body → essential for spermatogenesis</div></div>
+        <div class="sum-item"><span class="sum-icon">🔵</span><div>Sertoli cells → <strong>nutrition + inhibin</strong> | Leydig → <strong>testosterone</strong></div></div>
+        <div class="sum-item"><span class="sum-icon">🧪</span><div>Epididymis = site of <strong>sperm maturation</strong></div></div>
+        <div class="sum-item"><span class="sum-icon">💧</span><div>Seminal vesicle = <strong>fructose (energy)</strong> + 60–70% volume</div></div>
+        <div class="sum-item"><span class="sum-icon">💧</span><div>Prostate = <strong>enzymes</strong> (motility) | Cowper's = <strong>mucus</strong> (lubrication)</div></div>
+        <div class="sum-item"><span class="sum-icon">🎯</span><div>Fertilization = <strong>Ampullary–isthmic junction</strong></div></div>
+        <div class="sum-item"><span class="sum-icon">🛑</span><div>Oogenesis arrest: <strong>Prophase I</strong> (birth–puberty) → <strong>Metaphase II</strong> (puberty–fertilization)</div></div>
+        <div class="sum-item"><span class="sum-icon">1️⃣</span><div>1 primary spermatocyte → <strong>4 spermatids / sperms</strong></div></div>
+        <div class="sum-item"><span class="sum-icon">🧬</span><div>Blastocyst: Trophoblast → placenta | ICM → embryo | Blastocoel → cavity</div></div>
+        <div class="sum-item"><span class="sum-icon">📅</span><div>Implantation: ~<strong>6–7 days</strong> after fertilization</div></div>
+        <div class="sum-item"><span class="sum-icon">🤰</span><div>Embryo → Foetus at <strong>8 weeks</strong></div></div>
+        <div class="sum-item"><span class="sum-icon">🧪</span><div>hCG = <strong>pregnancy test hormone</strong> | produced by syncytiotrophoblast</div></div>
+        <div class="sum-item"><span class="sum-icon">🔄</span><div>Parturition: <strong>positive feedback</strong> — oxytocin ↔ contractions</div></div>
+        <div class="sum-item"><span class="sum-icon">🍼</span><div>Colostrum = <strong>IgA-rich</strong> first milk → passive immunity</div></div>
+        <div class="sum-item"><span class="sum-icon">🌸</span><div>LH surge (Day 14) → ovulation | LH converts follicle → corpus luteum</div></div>
+        <div class="sum-item"><span class="sum-icon">❤️</span><div>Heart forms: <strong>3rd week</strong> | Beats: <strong>4th week</strong></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-title">📝 Probable Exam Questions (Short & Long)</div>
+      <i class="acc-arrow">▼</i>
+    </div>
+    <div class="acc-body">
+      <div class="label">1 Mark / Short Answer</div>
+      <div class="qbox"><span>Q1.</span>What is the role of Sertoli cells?</div>
+      <div class="qbox"><span>Q2.</span>Name the site of fertilization in humans.</div>
+      <div class="qbox"><span>Q3.</span>What is spermiation?</div>
+      <div class="qbox"><span>Q4.</span>Which hormone is detected in a pregnancy test and where is it produced?</div>
+      <div class="qbox"><span>Q5.</span>Name the arrest stages in oogenesis.</div>
+      <div class="qbox"><span>Q6.</span>What is the function of the acrosome?</div>
+      <div class="qbox"><span>Q7.</span>Define capacitation.</div>
+      <div class="qbox"><span>Q8.</span>What is colostrum? Why is it important?</div>
+      <div class="qbox"><span>Q9.</span>When does an embryo become a foetus?</div>
+      <div class="qbox"><span>Q10.</span>What triggers parturition?</div>
+      <hr>
+      <div class="label">3–5 Mark / Long Answer</div>
+      <div class="qbox"><span>Q11.</span>Draw and describe the structure of a mature sperm.</div>
+      <div class="qbox"><span>Q12.</span>Describe the process of spermatogenesis with a labelled diagram.</div>
+      <div class="qbox"><span>Q13.</span>Explain the menstrual cycle with hormonal changes.</div>
+      <div class="qbox"><span>Q14.</span>Describe fertilization and the events leading to implantation.</div>
+      <div class="qbox"><span>Q15.</span>What is the role of the placenta? List all hormones secreted by it.</div>
+      <div class="qbox"><span>Q16.</span>Compare spermatogenesis and oogenesis in a tabular form.</div>
+      <div class="qbox"><span>Q17.</span>Explain the foetal ejection reflex and positive feedback during parturition.</div>
+      <div class="qbox"><span>Q18.</span>Give a brief account of extra-embryonic membranes and their functions.</div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-title">🗺️ Quick Summary — Full Chapter</div>
+      <i class="acc-arrow">▼</i>
+    </div>
+    <div class="acc-body">
+      <table>
+        <tr><th>Topic</th><th>Key Point</th></tr>
+        <tr><td>Male system</td><td>Testes in scrotum (lower temp) → spermatogenesis</td></tr>
+        <tr><td>Sperm path</td><td>ST → Rete testis → Vasa efferentia → Epididymis → VD → EJD → Urethra</td></tr>
+        <tr><td>Glands</td><td>Seminal vesicle (fructose) | Prostate (enzymes) | Cowper's (mucus)</td></tr>
+        <tr><td>Spermatogenesis</td><td>GnRH → LH/FSH → 1 spermatocyte → 4 sperms</td></tr>
+        <tr><td>Oogenesis</td><td>Starts before birth; 1 oocyte → 1 ovum + 3 polar bodies</td></tr>
+        <tr><td>Ovulation</td><td>Day 14, LH surge; secondary oocyte released</td></tr>
+        <tr><td>Fertilization</td><td>Ampulla; capacitation → acrosomal reaction → zygote</td></tr>
+        <tr><td>Cleavage</td><td>Zygote → morula (3–4 days) → blastocyst → implantation (6–7 days)</td></tr>
+        <tr><td>Placenta</td><td>Transport + barrier + endocrine (hCG, hPL, relaxin, P4, E2)</td></tr>
+        <tr><td>Embryo → Foetus</td><td>At 8 weeks</td></tr>
+        <tr><td>Parturition</td><td>Foetal ejection reflex → oxytocin → positive feedback loop</td></tr>
+        <tr><td>Lactation</td><td>Prolactin (production) + oxytocin (ejection); colostrum = IgA</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.main-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('page-' + id).classList.add('active');
+    event.target.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function toggleAcc(header) {
+    const acc = header.parentElement;
+    acc.classList.toggle('open');
+  }
+
+  // Open first accordion of each page on tab switch
+  document.querySelectorAll('.main-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      setTimeout(() => {
+        const activePage = document.querySelector('.page.active');
+        const firstAcc = activePage?.querySelector('.accordion');
+        if (firstAcc && !firstAcc.classList.contains('open')) {
+          firstAcc.classList.add('open');
+        }
+      }, 100);
+    });
+  });
+</script>
+</body>
+</html>
